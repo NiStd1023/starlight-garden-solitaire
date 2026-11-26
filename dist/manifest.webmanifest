@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "星光花園・撲克接龍",
+  "short_name": "星光花園",
+  "description": "在月夜花園裡，享受輕鬆療癒的撲克接龍時光。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b2926",
+  "theme_color": "#102b2a",
+  "icons": [
+    {"src":"icons/icon-192.png", "sizes":"192x192", "type":"image/png", "purpose":"any"},
+    {"src":"icons/icon-512.png", "sizes":"512x512", "type":"image/png", "purpose":"any"},
+    {"src":"icons/icon-maskable-512.png", "sizes":"512x512", "type":"image/png", "purpose":"maskable"}
+  ]
+}

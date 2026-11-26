@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102b2a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="星光花園">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <meta name="description" content="在星光花園裡，用一張張精緻撲克牌展開輕鬆有趣的接龍時光。">
+  <title>星光花園｜撲克接龍</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="星光花園 撲克接龍">
+        <span class="brand-mark" aria-hidden="true"><span>✦</span></span>
+        <span class="brand-text"><strong>星光花園</strong><small>STARLIGHT SOLITAIRE</small></span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-button install-button" id="installBtn" aria-label="安裝遊戲" title="安裝遊戲"><span aria-hidden="true">⊕</span></button>
+        <button class="icon-button" id="rulesBtn" aria-label="遊戲說明" title="遊戲說明"><span aria-hidden="true">?</span></button>
+        <button class="icon-button" id="musicBtn" aria-label="關閉背景音樂" title="背景音樂"><span aria-hidden="true">♫</span></button>
+        <button class="icon-button" id="soundBtn" aria-label="關閉遊戲音效" title="遊戲音效"><span aria-hidden="true">♪</span></button>
+        <button class="new-game-btn" id="newGameBtn"><span aria-hidden="true">↻</span><span>新牌局</span></button>
+      </div>
+    </header>
+
+    <main>
+      <div class="intro-line"><span class="eyebrow">A LITTLE MOMENT OF MAGIC</span><span class="intro-star">✦</span><span>在星光下，享受屬於自己的接龍時光</span></div>
+      <div class="game-layout">
+        <section class="game-section" aria-label="遊戲牌桌">
+          <div class="board-topline">
+            <div><p class="section-kicker">THE ENCHANTED GARDEN</p><h1>花園接龍 <span>✦</span></h1></div>
+            <div class="compact-stats" aria-label="遊戲資訊">
+              <div><span>分數</span><strong id="score">0</strong></div>
+              <div><span>連擊</span><strong id="combo">0</strong></div>
+              <div><span>時間</span><strong id="timer">00:00</strong></div>
+            </div>
+          </div>
+          <div class="garden-board">
+            <div class="board-ornament left-ornament" aria-hidden="true">✧</div><div class="board-ornament right-ornament" aria-hidden="true">✧</div>
+            <div class="board-caption"><span></span> 移除所有花園牌 <span></span></div>
+            <div class="tableau" id="tableau" aria-label="花園牌陣"></div>
+            <div class="status-line" id="statusLine" role="status" aria-live="polite">選擇比下方牌大或小 1 點的牌</div>
+            <div class="play-area">
+              <div class="pile-group">
+                <button class="card stock-card card-back" id="stockBtn" aria-label="抽取下一張牌"><span class="back-inner"><span class="back-star">✦</span><span class="back-detail">✧ &nbsp; ✧</span></span><span class="stock-count" id="stockCount">23</span></button>
+                <span class="pile-label">抽牌堆</span>
+              </div>
+              <div class="pile-separator" aria-hidden="true">✦</div>
+              <div class="pile-group">
+                <div class="waste-holder" id="waste" aria-label="目前的牌"></div>
+                <span class="pile-label">目前的牌</span>
+              </div>
+              <div class="play-instruction"><strong>接上前一張牌</strong><span>點數相差 1 即可，花色不限</span><span>A 與 K 也能相接</span></div>
+            </div>
+          </div>
+          <div class="action-bar" aria-label="遊戲工具">
+            <button class="tool-button" id="undoBtn"><span class="tool-icon">↶</span><span>復原</span></button>
+            <button class="tool-button" id="hintBtn"><span class="tool-icon">✧</span><span>提示</span></button>
+            <button class="tool-button star-tool" id="starBtn" aria-pressed="false"><span class="tool-icon star-symbol">✦</span><span>星光百搭</span><b id="starCount">1</b></button>
+            <button class="tool-button" id="themeBtn"><span class="tool-icon">◈</span><span>換牌背</span></button>
+          </div>
+        </section>
+        <aside class="side-panel">
+          <div class="side-heading"><span class="side-heading-icon">✦</span><div><span>YOUR LITTLE ESCAPE</span><h2>給自己的片刻悠閒</h2></div></div>
+          <p class="side-copy">翻開一張牌，讓星光帶你走進花園。慢慢玩，每一步都有驚喜。</p>
+          <div class="rule-card"><div class="rule-card-title"><span>✧</span> 遊戲小提示</div><div class="rule-item"><i>01</i><p>選擇與目前牌點數<span>大 1 或小 1</span> 的牌。</p></div><div class="rule-item"><i>02</i><p>連續接牌累積分數，<span>每 5 連擊</span> 獲得百搭星光。</p></div><div class="rule-item"><i>03</i><p>沒有能接的牌時，從<span>抽牌堆</span>翻開新牌。</p></div></div>
+          <div class="journey-card"><div><span>這局已收集</span><strong><b id="clearedCount">0</b><small> / 28 張</small></strong></div><span class="journey-icon">✿</span><div class="progress-track"><div id="progressBar"></div></div></div>
+          <div class="best-score">✧&nbsp; 最高分 <strong id="bestScore">0</strong></div>
+          <button class="side-rule-link" id="rulesLink">查看完整遊戲規則 <span>⌁</span></button>
+          <div class="side-bottom">TAKE YOUR TIME &nbsp; · &nbsp; ENJOY THE GAME</div>
+        </aside>
+      </div>
+    </main>
+    <footer>MADE FOR A LITTLE MOMENT OF JOY <span>✦</span> 星光花園</footer>
+  </div>
+
+  <dialog id="installDialog" class="modal">
+    <div class="modal-card compact-modal"><button class="modal-close" data-close aria-label="關閉">×</button><div class="modal-emblem">✦</div><span class="modal-kicker">KEEP THE MAGIC CLOSE</span><h2>把花園放進手機或電腦</h2><p class="modal-intro">安裝後可以從桌面開啟，第一次連網載入完成後，也能離線遊玩。</p><ol class="rule-list install-instructions"><li><b>iPhone／iPad</b><span>使用 Safari 開啟遊戲，點「分享」，再選擇「加入主畫面」。</span></li><li><b>Android</b><span>使用 Chrome 開啟遊戲，點右上角選單，選「安裝應用程式」或「加到主畫面」。</span></li><li><b>電腦</b><span>在 Chrome 或 Edge 網址列尋找安裝圖示，或從瀏覽器選單選擇安裝。</span></li></ol><p class="install-note">牌局與最高分儲存在目前的瀏覽器或已安裝的遊戲中，不會在不同裝置間同步。</p><button class="primary-button" data-close>知道了</button></div>
+  </dialog>
+  <dialog id="rulesDialog" class="modal">
+    <div class="modal-card"><button class="modal-close" data-close aria-label="關閉">×</button><div class="modal-emblem">✧</div><span class="modal-kicker">HOW TO PLAY</span><h2>歡迎來到星光花園</h2><p class="modal-intro">一邊接牌，一邊收集星光。將花園裡的牌全部移除，就能完成旅程。</p>
+      <ol class="rule-list"><li><b>選一張可以翻開的牌</b><span>只能選取沒有被其他牌壓住的亮面牌。</span></li><li><b>點數大 1 或小 1 都能接</b><span>例如 7 可接 6 或 8；A 和 K 也可以相接，花色不限。</span></li><li><b>接不上就抽一張牌</b><span>點選左側牌堆；抽牌會中斷目前的連擊。</span></li><li><b>善用星光百搭牌</b><span>按下「星光百搭」，下一張亮面牌可無視點數直接接上。每達成 5 連擊可獲得 1 顆，最多持有 3 顆。</span></li><li><b>慢慢玩也沒關係</b><span>提示和復原可以重複使用；同花色接牌可額外加分。</span></li></ol>
+      <button class="primary-button" data-close>開始探索</button>
+    </div>
+  </dialog>
+  <dialog id="newDialog" class="modal">
+    <div class="modal-card compact-modal"><button class="modal-close" data-close aria-label="關閉">×</button><div class="modal-emblem">✦</div><span class="modal-kicker">A NEW ADVENTURE</span><h2>開始新的旅程？</h2><p class="modal-intro">可以重新挑戰這副牌，或為花園洗一副新牌。</p><div class="modal-actions"><button class="secondary-button" id="replayBtn">重玩本局</button><button class="primary-button" id="freshBtn">新的牌局</button></div><button class="plain-button" data-close>繼續目前牌局</button></div>
+  </dialog>
+  <dialog id="winDialog" class="modal">
+    <div class="modal-card compact-modal win-card"><div class="win-stars">✦ ✧ ✦</div><span class="modal-kicker">GARDEN COMPLETE</span><h2>花園因你而閃耀</h2><p class="modal-intro">恭喜完成這場星光旅程！</p><div class="win-score"><span>本局得分</span><strong id="finalScore">0</strong></div><button class="primary-button" id="winNewBtn">再玩一局</button><button class="plain-button" data-close>欣賞花園</button></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
